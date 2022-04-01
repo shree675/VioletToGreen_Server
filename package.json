@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/debesheedas/VioletToGreen_Server#readme",
   "dependencies": {
+    "java-ast": "^0.3.0",
     "java-parser": "^2.0.1"
   }
 }
