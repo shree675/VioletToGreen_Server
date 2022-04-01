@@ -1,0 +1,24 @@
+Halstead Metrics
+
+Cyclomatic Complexity
+
+S
+
+
+Halstead Metrics
+
+Calculation - Reference Link: http://www.projectcodemeter.com/cost_estimation/help/GL_halstead.htm
+First we need to compute the following numbers, given the program source code:
+
+n1 = the number of distinct operators
+n2 = the number of distinct operands
+N1 = the total number of operators
+N2 = the total number of operands
+From these numbers, five measures can be calculated:
+
+Program length: N = N1 + N2 
+Program vocabulary: n = n1 + n2
+Volume: V = N * log_2 (n) 
+Difficulty : D = (n1/2)*(n2/N2)
+Effort: E = D * V
+The difficulty measure is related to the difficulty of the program to write or understand, e.g. when doing code review
