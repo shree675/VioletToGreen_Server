@@ -1,8 +1,20 @@
+/* var fs = require('fs');
+  
+// Use fs.readFile() method to read the file
+fs.readFile('../Halstead_Testcases/Test0.txt', 'utf8', function(err, data){
+    console.log("enter body")
+    // Display the file content
+    console.log(data.toString());
+});
+  
+console.log('readFile called'); */
+
+//Reading from files in js is async and so annoying!
+
+
 const javaText = `
-public class HelloWorldExample{
-  public static void main(String args[]){
-    System.out.println("Hello World !");
-  }
+class Test0 {
+    int a = 2+3;
 }
 `;
 
@@ -10,10 +22,12 @@ const { parse } = require("java-parser");
 
 const unique_operators = new Set();
 const unique_operands = new Set();
+const all_operators = [];
+const all_operands = [];
 
 const cst = parse(javaText);
 let q = [cst];
-console.log(q)
+//console.log(q)
 
 let cur_level = 1;
 let next_level = 0;
@@ -32,8 +46,14 @@ while (q.length > 0) {
     console.log(s);
   } 
   if (s.name === "literal") {
-    console.log(s, s.children);
-}
+    console.log(s, s.children, s.children.location);
+    }
+    if (s.name === "Identifier") {  
+        console.log(s, s.children, s.children.children);
+    }
+    if (s.name === "variableInitializer") {  
+        console.log(s, s.children, s.children.children);
+    }
 
   if (s.children) {
     for (let [key, val] of Object.entries(s.children)) {
