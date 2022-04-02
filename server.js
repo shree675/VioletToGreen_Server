@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Welcome to the VioletTOGreen Server.");
 });
 
 const CYC_PATH = path.join(
@@ -18,6 +18,15 @@ const CYC_PATH = path.join(
 );
 
 java.classpath.push(path.join(CYC_PATH, "lib", "out.jar"));
+java.classpath.push(
+  path.join(
+    __dirname,
+    "Software_Metrics",
+    "Halstead_Metrics",
+    "lib",
+    "softwareMetrics.jar"
+  )
+);
 
 app.post("/cyc", (req, res) => {
   const code = req.body["code"];
@@ -30,6 +39,11 @@ app.post("/cyc", (req, res) => {
   Main.mainSync(args);
   const output = require(path.join(CYC_PATH, "output", "Output.json"));
   res.json(output);
+});
+
+app.get("/se", (req, res) => {
+  var DC = java.import("com.tongji409.DimensionCalculator");
+  DC.mainSync();
 });
 
 app.listen(3000, () => {

@@ -1,12 +1,10 @@
 const { parse } = require("java-parser");
 
-// const javaText = 
+// const javaText =
 
 const javaText = `
 public class HelloWorldExample{
-  public static void main(String args[]){
-    System.out.println("Hello World !");
-  }
+  int a = 2+3;
 }
 `;
 
@@ -57,5 +55,3 @@ while (q.length > 0) {
     // if (height <= 0) break;
   }
 }
-
-
