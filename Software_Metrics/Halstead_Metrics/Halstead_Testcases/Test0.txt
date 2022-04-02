@@ -1,0 +1,11 @@
+public class Test0 {
+    int a;
+    
+}
+
+
+public class HelloWorldExample{
+  public static void main(String args[]){
+    System.out.println("Hello World !");
+  }
+}
