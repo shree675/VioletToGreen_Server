@@ -22,15 +22,16 @@ java.classpath.push(
   path.join(
     __dirname,
     "Software_Metrics",
-    "Halstead_Metrics",
-    "lib",
-    "softwareMetrics.jar"
+    "SoftwareMetricsAnalyse",
+    "target",
+    "out.jar"
   )
 );
 
 app.post("/cyc", (req, res) => {
   const code = req.body["code"];
   fs.writeFileSync(path.join(CYC_PATH, "input", "Input.java"), code);
+
   var Main = java.import("antlr4.Main");
   var args = [
     path.join(CYC_PATH, "input", "Input.java"),
@@ -42,8 +43,9 @@ app.post("/cyc", (req, res) => {
 });
 
 app.get("/se", (req, res) => {
-  var DC = java.import("com.tongji409.DimensionCalculator");
-  DC.mainSync();
+  var DimensionCalculator = java.import("com.tongji409.DimensionCalculator");
+  var args = [path.join(CYC_PATH, "input", "Test1.java")];
+  DimensionCalculator.mainSync(args);
 });
 
 app.listen(3000, () => {
