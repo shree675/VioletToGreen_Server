@@ -17,6 +17,12 @@ const CYC_PATH = path.join(
   "Cyclomatic_Complexity"
 );
 
+const HAL_PATH = path.join(
+  __dirname,
+  "Software_Metrics",
+  "SoftwareMetricsAnalyse"
+);
+
 java.classpath.push(path.join(CYC_PATH, "lib", "out.jar"));
 java.classpath.push(
   path.join(
@@ -42,10 +48,13 @@ app.post("/cyc", (req, res) => {
   res.json(output);
 });
 
-app.get("/se", (req, res) => {
+app.get("/halstead", (req, res) => {
   var DimensionCalculator = java.import("com.tongji409.DimensionCalculator");
   var args = [path.join(CYC_PATH, "input", "Test1.java")];
   DimensionCalculator.mainSync(args);
+
+  const output = require(path.join(HAL_PATH, "output", "Output.json"));
+  res.json(output);
 });
 
 app.listen(3000, () => {
