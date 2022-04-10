@@ -1,8 +1,6 @@
-const path = require("path");
-const fs = require("fs");
 const express = require("express");
 const bodyParser = require("body-parser");
-var java = require("java");
+const rum = require("./scripts/rum");
 
 const app = express();
 app.use(bodyParser.json());
@@ -11,50 +9,18 @@ app.get("/", (req, res) => {
   res.send("Welcome to the VioletTOGreen Server.");
 });
 
-const CYC_PATH = path.join(
-  __dirname,
-  "Software_Metrics",
-  "Cyclomatic_Complexity"
-);
+const javaCode =
+  "public class BubbleSortExample { static void bubbleSort(int[] arr) {  int n = arr.length; int temp = 0;  for(int i=0; i < n; i++){  for(int j=1; j < (n-i); j++){  if(arr[j-1] > arr[j]){  temp = arr[j-1];  arr[j-1] = arr[j];  arr[j] = temp;}}}}}";
 
-const HAL_PATH = path.join(
-  __dirname,
-  "Software_Metrics",
-  "SoftwareMetricsAnalyse"
-);
+app.post("/suggest_comments", (req, res) => {
+  console.log(req.body);
 
-java.classpath.push(path.join(CYC_PATH, "lib", "out.jar"));
-java.classpath.push(
-  path.join(
-    __dirname,
-    "Software_Metrics",
-    "SoftwareMetricsAnalyse",
-    "target",
-    "out.jar"
-  )
-);
-
-app.post("/cyc", (req, res) => {
-  const code = req.body["code"];
-  fs.writeFileSync(path.join(CYC_PATH, "input", "Input.java"), code);
-
-  var Main = java.import("antlr4.Main");
-  var args = [
-    path.join(CYC_PATH, "input", "Input.java"),
-    path.join(CYC_PATH, "output", "Output.json"),
-  ];
-  Main.mainSync(args);
-  const output = require(path.join(CYC_PATH, "output", "Output.json"));
-  res.json(output);
+  res.send("Recieved....");
 });
 
-app.get("/halstead", (req, res) => {
-  var DimensionCalculator = java.import("com.tongji409.DimensionCalculator");
-  var args = [path.join(CYC_PATH, "input", "Test1.java")];
-  DimensionCalculator.mainSync(args);
-
-  const output = require(path.join(HAL_PATH, "output", "Output.json"));
-  res.json(output);
+app.get("/metrics", (req, res) => {
+  const result = rum(javaCode, "class");
+  res.send(`${result}`);
 });
 
 app.listen(3000, () => {

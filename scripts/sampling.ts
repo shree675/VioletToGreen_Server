@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 const { parse } = require("java-parser");
 
 export class Metrics {
