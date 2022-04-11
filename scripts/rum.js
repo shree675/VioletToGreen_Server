@@ -22,7 +22,7 @@ const w2 = 0.6;
 java.classpath.push(path.join(CYC_PATH, "lib", "out.jar"));
 java.classpath.push(path.join(HAL_PATH, "target", "out.jar"));
 
-function rum(sample_code, sample_type) {
+function calculateRum(sample_code, sample_type) {
   if (sample_type == "class") {
     fs.writeFileSync(path.join(CYC_PATH, "input", "Input.java"), sample_code);
 
@@ -48,4 +48,4 @@ function rum(sample_code, sample_type) {
   }
 }
 
-module.exports = rum;
+module.exports = { calculateRum };

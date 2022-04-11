@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const rum = require("./scripts/rum");
+const { CodeSampler } = require("./scripts/codeSampler");
+const { calculateRum } = require("./scripts/rum");
+const { commentRatio } = require("./scripts/findComments");
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,7 +17,15 @@ const javaCode =
 app.post("/suggest_comments", (req, res) => {
   console.log(req.body);
 
-  res.send("Recieved....");
+  const code = req.body.code;
+  const configs = req.body.configs;
+
+  console.log(CodeSampler);
+  var codeSampler = new CodeSampler();
+  codeSampler.getBlocks(code);
+  commentRatio(code, codeSampler.methods, configs);
+
+  res.send("Recieved : ", code, configs);
 });
 
 app.get("/metrics", (req, res) => {

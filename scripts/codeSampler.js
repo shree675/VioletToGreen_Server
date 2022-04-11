@@ -1,20 +1,35 @@
 const { parse } = require("java-parser");
 
-export class Metrics {
-  public methods: any = [];
-  public classes: any = [];
-  public interfaces: any = [];
-  public forLoops: any = [];
-  public ifElseStatements: any = [];
-  public whileLoops: any = [];
-  public switchStatements: any = [];
-  public doStatements: any = [];
-  public initAndDeclStatements: any = [];
-  public assignmentStatements: any = [];
-  public blocks: any = [];
-  public caseBlocks: any = [];
+class CodeSampler {
+  methods;
+  classes;
+  interfaces;
+  forLoops;
+  ifElseStatements;
+  whileLoops;
+  switchStatements;
+  doStatements;
+  initAndDeclStatements;
+  assignmentStatements;
+  blocks;
+  caseBlocks;
 
-  public getBlocks = (javaText: string) => {
+  constructor() {
+    this.methods = [];
+    this.classes = [];
+    this.interfaces = [];
+    this.forLoops = [];
+    this.ifElseStatements = [];
+    this.whileLoops = [];
+    this.switchStatements = [];
+    this.doStatements = [];
+    this.initAndDeclStatements = [];
+    this.assignmentStatements = [];
+    this.blocks = [];
+    this.caseBlocks = [];
+  }
+
+  getBlocks = (javaText) => {
     const cst = parse(javaText);
 
     let q = [cst];
@@ -25,7 +40,7 @@ export class Metrics {
       let s = q.shift();
       curl--;
 
-      process.stdout.write(`${s.name},`);
+      // process.stdout.write(`${s.name},`);
 
       // if (s.location?.startLine === 95 && s.location?.endLine === 99) {
       //   console.log(`${s.name}`, s.location);
@@ -106,8 +121,8 @@ export class Metrics {
     }
 
     // distinguishing between if, else if and else blocks
-    var temp: any[] = [];
-    var flag: boolean;
+    var temp = [];
+    var flag = false;
 
     for (let i = 0; i < this.blocks.length; i++) {
       flag = false;
@@ -156,9 +171,9 @@ export class Metrics {
     // console.log(this.methods);
   };
 
-  removeNested = (innerArray: any, outerArray: any) => {
-    var temp: any[] = [];
-    var flag: boolean;
+  removeNested = (innerArray, outerArray) => {
+    var temp = [];
+    var flag = false;
 
     for (let i = 0; i < innerArray.length; i++) {
       flag = false;
@@ -188,3 +203,5 @@ export class Metrics {
     return innerArray;
   };
 }
+
+module.exports.CodeSampler = CodeSampler;
