@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { CodeSampler } = require("./scripts/codeSampler");
 const { calculateRum } = require("./scripts/rum");
-const { commentRatio } = require("./scripts/findComments");
+const { commentRatio } = require("./scripts/commentRatio");
 
 const app = express();
 app.use(bodyParser.json());
