@@ -1,0 +1,26 @@
+[
+  {
+    "startOffset": 73,
+    "startLine": 4,
+    "startColumn": 5,
+    "endOffset": 458,
+    "endLine": 16,
+    "endColumn": 5
+  },
+  {
+    "startOffset": 494,
+    "startLine": 19,
+    "startColumn": 5,
+    "endOffset": 665,
+    "endLine": 25,
+    "endColumn": 5
+  },
+  {
+    "startOffset": 709,
+    "startLine": 28,
+    "startColumn": 5,
+    "endOffset": 950,
+    "endLine": 35,
+    "endColumn": 5
+  }
+]
