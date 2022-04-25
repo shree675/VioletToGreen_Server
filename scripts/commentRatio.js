@@ -53,7 +53,7 @@ function commentRatio(codeFile, codeSamples, configs) {
 
     //------------------------------------------------------
     //external comments from links
-    //console.log("configs");
+    console.log(configs);
     for (var config of configs) {
       //console.log(config[1]);
       let overlapLength = 0;
@@ -129,27 +129,27 @@ function commentRatio(codeFile, codeSamples, configs) {
   return commentCodeRatios;
 }
 
-codeFile = ``;
-codeSamples = "";
-configs = "";
+// codeFile = ``;
+// codeSamples = "";
+// configs = "";
 
-(async () => {
-  lines = fs.readFileSync("./testing/codeFile.txt", "utf8");
-  codeFile = lines.toString();
-})();
+// (async () => {
+//   lines = fs.readFileSync("./testing/codeFile.txt", "utf8");
+//   codeFile = lines.toString();
+// })();
 
-(async () => {
-  lines = fs.readFileSync("./testing/codeSamples.json");
-  codeSamples = JSON.parse(lines);
-  //codeSamples = lines.toString();
-})();
+// (async () => {
+//   lines = fs.readFileSync("./testing/codeSamples.json");
+//   codeSamples = JSON.parse(lines);
+//   //codeSamples = lines.toString();
+// })();
 
-(async () => {
-  lines = fs.readFileSync("./testing/configs.json");
-  configs = JSON.parse(lines);
-  //configs = lines.toString();
-})();
+// (async () => {
+//   lines = fs.readFileSync("./testing/configs.json");
+//   configs = JSON.parse(lines);
+//   //configs = lines.toString();
+// })();
 
-var commentRatios = commentRatio(codeFile, codeSamples, configs);
-console.log(commentRatios);
-//module.exports = { commentRatio };
+// var commentRatios = commentRatio(codeFile, codeSamples, configs);
+// console.log(commentRatios);
+module.exports = { commentRatio };

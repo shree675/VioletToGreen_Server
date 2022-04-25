@@ -170,19 +170,76 @@ class CodeSampler {
     // console.log(this.switchStatements);
     // console.log(this.methods);
 
+    // Merge all the blocks ---------------------------------
+
     var all_blocks = [];
-    all_blocks.append(...this.methods);
-    all_blocks.append(...this.classes);
-    all_blocks.append(...this.interfaces);
-    all_blocks.append(...this.forLoops);
-    all_blocks.append(...this.ifElseStatements);
-    all_blocks.append(...this.whileLoops);
-    all_blocks.append(...this.switchStatements);
-    all_blocks.append(...this.doStatements);
-    all_blocks.append(...this.initAndDeclStatements);
-    all_blocks.append(...this.assignmentStatements);
-    all_blocks.append(...this.blocks);
-    // all_blocks.append(...this.caseBlocks)
+    var all_blocks_types = [];
+
+    all_blocks.push(...this.methods);
+    all_blocks.push(...this.classes);
+    // all_blocks.push(...this.interfaces);
+    all_blocks.push(...this.forLoops);
+    all_blocks.push(...this.ifElseStatements);
+    all_blocks.push(...this.whileLoops);
+    all_blocks.push(...this.switchStatements);
+    all_blocks.push(...this.doStatements);
+    all_blocks.push(...this.initAndDeclStatements);
+    all_blocks.push(...this.assignmentStatements);
+    all_blocks.push(...this.blocks);
+    // all_blocks.push(...this.caseBlocks)
+
+    all_blocks_types.push(
+      ...Array(this.methods.length)
+        .fill(1)
+        .map((e) => "method")
+    );
+    all_blocks_types.push(
+      ...Array(this.classes.length)
+        .fill(1)
+        .map((e) => "class")
+    );
+    all_blocks_types.push(
+      ...Array(this.forLoops.length)
+        .fill(1)
+        .map((e) => "other")
+    );
+    all_blocks_types.push(
+      ...Array(this.ifElseStatements.length)
+        .fill(1)
+        .map((e) => "other")
+    );
+    all_blocks_types.push(
+      ...Array(this.whileLoops.length)
+        .fill(1)
+        .map((e) => "other")
+    );
+    all_blocks_types.push(
+      ...Array(this.switchStatements.length)
+        .fill(1)
+        .map((e) => "other")
+    );
+    all_blocks_types.push(
+      ...Array(this.doStatements.length)
+        .fill(1)
+        .map((e) => "other")
+    );
+    all_blocks_types.push(
+      ...Array(this.initAndDeclStatements.length)
+        .fill(1)
+        .map((e) => "other")
+    );
+    all_blocks_types.push(
+      ...Array(this.assignmentStatements.length)
+        .fill(1)
+        .map((e) => "other")
+    );
+    all_blocks_types.push(
+      ...Array(this.blocks.length)
+        .fill(1)
+        .map((e) => "other")
+    );
+
+    return [all_blocks, all_blocks_types];
   };
 
   removeNested = (innerArray, outerArray) => {
