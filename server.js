@@ -20,10 +20,13 @@ app.post("/suggest_comments", (req, res) => {
   const code = req.body.code;
   const configs = req.body.configs;
 
-  console.log(CodeSampler);
+  // console.log(CodeSampler);
   var codeSampler = new CodeSampler();
   codeSampler.getBlocks(code);
+
   commentRatio(code, codeSampler.methods, configs);
+
+  comm;
 
   res.send("Recieved : ", code, configs);
 });

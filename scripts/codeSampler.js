@@ -169,6 +169,20 @@ class CodeSampler {
 
     // console.log(this.switchStatements);
     // console.log(this.methods);
+
+    var all_blocks = [];
+    all_blocks.append(...this.methods);
+    all_blocks.append(...this.classes);
+    all_blocks.append(...this.interfaces);
+    all_blocks.append(...this.forLoops);
+    all_blocks.append(...this.ifElseStatements);
+    all_blocks.append(...this.whileLoops);
+    all_blocks.append(...this.switchStatements);
+    all_blocks.append(...this.doStatements);
+    all_blocks.append(...this.initAndDeclStatements);
+    all_blocks.append(...this.assignmentStatements);
+    all_blocks.append(...this.blocks);
+    // all_blocks.append(...this.caseBlocks)
   };
 
   removeNested = (innerArray, outerArray) => {
